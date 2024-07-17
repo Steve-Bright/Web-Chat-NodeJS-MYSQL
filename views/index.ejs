@@ -5,19 +5,19 @@
 
     <body>
         <!-- <h1>Chat Home Page</h1> -->
-        <form action="/roomSubmi">
+        <form action="/rooms" method="POST">
             <h1>Chat Home Page</h1>
             <label for="userName">UserName: </label>
             <input type="text" name="userName" required>
 
-            <input type="radio" name="rooms">
-            <label for="roomOne">Room One</label>
+            <input type="radio" name="rooms" value="one">
+            <label for="roomOne" >Room One</label>
 
-            <input type="radio" name="rooms">
-            <label for="roomTwo">Room Two</label>
+            <input type="radio" name="rooms" value="two">
+            <label for="roomTwo" >Room Two</label>
 
-            <input type="radio" name="rooms">
-            <label for="roomThree">Room Three</label>
+            <input type="radio" name="rooms" value="three">
+            <label for="roomThree" >Room Three</label>
 
             <br> <br>
             <button type="submit"> Submit </button>

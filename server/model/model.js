@@ -5,15 +5,19 @@ const User = function(user){
 }
 
 User.create = (newUser,result ) => {
-    mysql.query("INSERT INTO users SET ?", newUser, (err, res) => {
+
+    const setClause = Object.entries(newUser)
+        .map(([key, value]) => `${key} = "${value}"`)
+
+    mysql.query(`INSERT INTO users SET ${setClause}`, (err, res) => {
         if(err){
             console.log("error: " + err)
             result(err, null)
             return
         }
 
-        console.log("Created the temporary user: ", {id: res.insertId, ...userId})
-        result(null, {id: res.insertId, ...userId})
+        console.log("Created the temporary user: ", {id: res.insertId, ...newUser})
+        result(null, {id: res.insertId, ...newUser})
     })
 }
 

@@ -1,12 +1,28 @@
 const express = require("express")
-const path = require("path")
+const bodyParser = require("body-parser")
 const rooms = express.Router();
-console.log("here in rooms.js")
+const users  = require("../model/model.js")
 
-rooms.use("/", (req, res) => {
+
+rooms.use(bodyParser.urlencoded({ extended: true }))
+
+rooms.post("/", (req, res) => {
     // res.send("something else")
     // res.sendFile("userAsk.html", {root: path.join(__dirname, "..", "..", "views")})
-    res.render("userAsk")
+    // const user = {
+    //     user = 
+    // }
+
+    const user = {
+        userName: req.body.userName
+    }
+
+    users.create(user, (err, data) => {
+        if(err){console.log(err)}
+        else{console.log("new user created " + data)}
+    })
+
+    res.send("Testing " + req.body.rooms)
 })
 
 rooms.get("/roomOne", (req, res) => {
